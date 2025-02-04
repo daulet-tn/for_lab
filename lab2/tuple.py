@@ -23,3 +23,6 @@ x1 = (True, 32, "apple")
 print(x1)
 #7
 print(type(a1))
+#8
+b1 = tuple(("apple", "banana", "cherry"))
+print(b1)
