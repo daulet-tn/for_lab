@@ -37,3 +37,6 @@ thisdict = {
 }
 print(type(thisdict))
 #7
+thisdict = dict(name = "John", age = 36, country = "Norway")
+print(thisdict)
+#8
