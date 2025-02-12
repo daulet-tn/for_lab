@@ -3,7 +3,7 @@
 # 2 functions: 1. upper, 2. pallindrom
 #  min 4
 x = input()
-class a(txt):
+class func(txt):
     def up(txt):
         print(txt.upper)
     def pal(txt):
