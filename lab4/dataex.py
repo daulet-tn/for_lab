@@ -1,10 +1,10 @@
 #1
 from datetime import datetime, timedelta 
-now = datetime.now()
+now = datetime.now() # take time at the moment
 fiveday= now - timedelta(days=5)
 print(fiveday.strftime("%Y-%m-%d")) 
 #2
-print(now.strftime("%Y-%m-%d"))
+print(now.strftime("%Y-%m-%d")) #print time like 2020-12-10
 #3
 yesterday = now - timedelta(days = 1)
 print(yesterday.strftime("%Y-%m-%d"))
