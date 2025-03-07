@@ -1,14 +1,11 @@
-# user string
-# class str
-# 2 functions: 1. upper, 2. pallindrom
-#  min 4
+# fdsFdfSd - fds_fdf_sd
+# 3+-today
+# 2, 8
+import re
+from datetime import datetime, timedelta 
 x = input()
-class func(txt):
-    def up(txt):
-        print(txt.upper)
-    def pal(txt):
-        z = txt.reverse()
-        if txt == z:
-            print("yes")
-            
-a("dad")
+s = re.findall(r'_[a-z]', x) 
+z =  len(s) + 1
+a = datetime.now()
+print(a - timedelta(days= z))
+print(a + timedelta(days= z ))

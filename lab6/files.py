@@ -22,7 +22,7 @@ def check_access(path):
     print("Writable:", os.access(path, os.W_OK))
     print("Executable:", os.access(path, os.X_OK))
 
-# Пример использования
+
 check_access('C:/Users')
 #3
 
@@ -34,14 +34,14 @@ def check_path_info(path):
     else:
         print('C:/Users/user/Desktop/example.txt')
 
-# Пример использования
+
 check_path_info('ttt.txt')
 #4
 def count_lines(filename):
     with open(filename, 'r', encoding='utf-8') as f:
         return sum(1 for line in f)
 
-# Пример использования
+
 print(count_lines('lab6/ttt.txt'))
 #5
 def write_list_to_file(filename, data):
@@ -49,7 +49,7 @@ def write_list_to_file(filename, data):
         for item in data:
             f.write(str(item) + '\n')
 
-# Пример использования
+ 
 write_list_to_file('output.txt', ['Hello', 'World', 123])
 #6
 import string
@@ -62,7 +62,7 @@ def copy_file(src, dest):
     with open(src, 'r', encoding='utf-8') as f1, open(dest, 'w', encoding='utf-8') as f2:
         f2.write(f1.read())
 
-# Пример использования
+
 copy_file('source.txt', 'destination.txt')
 #8
 import os
@@ -74,5 +74,5 @@ def delete_file(path):
     else:
         print("File does not exist or is not writable.")
 
-# Пример использования
+
 delete_file('example.txt')
