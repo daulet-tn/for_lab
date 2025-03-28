@@ -4,7 +4,7 @@ import pygame
 pygame.init()
 
 # Настройки окна
-WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 1500, 1000
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Paint in Pygame")
 
