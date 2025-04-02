@@ -1,11 +1,3 @@
-'''
- Snake
-Extend example project from Lab 8 and add following tasks:
-
-Randomly generating food with different weights
-Foods which are disappearing after some time(timer)
-Comment your code
-'''
 import pygame
 import time
 import random
@@ -87,7 +79,6 @@ def game_over() :
         'Your Score is : ' + str(score), True, red)
 
     # создать прямоугольный объект для текста
-    # surface object
     game_over_rect = game_over_surface.get_rect()
 
     # установка положения текста
@@ -100,18 +91,17 @@ def game_over() :
     # через 2 секунды мы выйдем из программы
     time.sleep(2)
 
-    # деактивация библиотеки pygame
+    
     pygame.quit()
 
-    # quit the program
+    
     quit()
 
 
-# Main Function
 tm = time.time()
 while True :
 
-    # обработка ключевых событий
+    
     for event in pygame.event.get() :
         if event.type == pygame.KEYDOWN :
             if event.key == pygame.K_UP :
@@ -123,9 +113,7 @@ while True :
             if event.key == pygame.K_RIGHT :
                 change_to = 'RIGHT'
 
-    # Если две клавиши нажаты одновременно
-    # мы не хотим, чтобы змея разделялась на две
-    # направлений одновременно
+    
     if change_to == 'UP' and direction != 'DOWN' :
         direction = 'UP'
     if change_to == 'DOWN' and direction != 'UP' :
@@ -145,22 +133,20 @@ while True :
     if direction == 'RIGHT' :
         snake_position[0] += 10
 
-    # Механизм роста тела змеи
-    # если фрукты и змеи сталкиваются, то очки
-    # будет увеличено на 10
+ 
     snake_body.insert(0, list(snake_position))
     if snake_position[0] == fruit_position[0] and snake_position[1] == fruit_position[1] :
         ans = random.randint(10, 20)
         score += ans
         score2 += ans
-        # Изменять скорость при увеличении lvl
+        
         if score2 > 30:
             level = level + 1
             score2 = 0
             snake_speed += 15
         fruit_spawn = False
     else :
-        # timer and change pos
+       
         if time.time() - tm > 5:
             tm = time.time()
             fruit_spawn = False
@@ -176,22 +162,21 @@ while True :
         pygame.draw.rect(game_window, green, pygame.Rect(pos[0], pos[1], 10, 10))
     pygame.draw.rect(game_window, white, pygame.Rect(fruit_position[0], fruit_position[1], 10, 10))
 
-    # Game Over conditions
+  
     if snake_position[0] < 0 or snake_position[0] > window_x - 10 :
         game_over()
     if snake_position[1] < 0 or snake_position[1] > window_y - 10 :
         game_over()
 
-    # Touching the snake body
+   
     for block in snake_body[1 :] :
         if snake_position[0] == block[0] and snake_position[1] == block[1] :
             game_over()
 
-    # displaying score countinuously
+  
     show_score(1, white, 'times new roman', 20)
 
-    # Refresh game screen
+ 
     pygame.display.update()
 
-    # Frame Per Second /Refresh Rate
     fps.tick(snake_speed)

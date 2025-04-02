@@ -1,11 +1,3 @@
-'''
-Racer
-Extend example project from Lab 8 and add following tasks: Extra tasks to the given tutorial:
-
-Randomly generating coins with different weights on the road
-Increase the speed of Enemy when the player earns N coins
-Comment your code
-'''
 import site
 import pygame
 import random
@@ -14,18 +6,18 @@ from itertools import chain
 
 pygame.init()
 
-#Colors
+#цвета 
 black = pygame.Color((0,0,0))
 white = pygame.Color((255,255,255))
 red = pygame.Color((255,0,0))
 blue = pygame.Color((0,0,255))
 green = pygame.Color((0,255,0))
 
-#Some game variables
+#окно
 screen_width = 400
 screen_height = 600
 speed = 5
-#scores
+
 score = 0
 coin_score = 0
 coin_scores ={
@@ -34,24 +26,24 @@ coin_scores ={
         "large":5
     }
 
-#fonts and game over text
+#текст окончаний игры 
 font = pygame.font.SysFont("Verdana", 60)
 font_small = pygame.font.SysFont("Verdana", 20)
 game_over = font.render("Game Over", True, black)
 
 
-#bg image
+#дорога 
 background = pygame.image.load("lab9/images/AnimatedStreet.png")
 
 
-#screen and frame counter
+#экран
 screen = pygame.display.set_mode((screen_width, screen_height))
 screen.fill(white)
 pygame.display.set_caption("Game")
 clock = pygame.time.Clock()
 loop = True
 
-#Enemy and Player classes
+#класс 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -82,7 +74,7 @@ class Player(pygame.sprite.Sprite):
             if pressed_keys[pygame.K_RIGHT]:
                 self.rect.move_ip(5,0)
 
-#coin class
+#класс для монет
 class Coin(pygame.sprite.Sprite):
     def __init__(self, enemy,size):
         super().__init__()
@@ -94,7 +86,6 @@ class Coin(pygame.sprite.Sprite):
             self.image = pygame.image.load("lab9/images/big_coin.png")
         self.rect = self.image.get_rect()
         coord_range = list(chain(range(22, enemy.rect.center[0] - 24 - 22), range(enemy.rect.center[0] + 24 + 22, screen_width - 22)))
-        #here we create create a range of integer values so that the coin and the enemy's rect's never overlap
         self.rect.center = (random.choice(coord_range), 0)
         self.size=size
     def move(self, enemy):
@@ -102,11 +93,10 @@ class Coin(pygame.sprite.Sprite):
      if self.rect.top > screen_height:
          self.rect.top = 0
 
-#instances of player and enemy
 P1 = Player()
 E1 = Enemy()
 coin = Coin(E1, "small")
-#Sprite groups
+
 enemies = pygame.sprite.Group()
 enemies.add(E1)
 coins_group = pygame.sprite.Group()
@@ -116,7 +106,7 @@ car_sprites.add(P1, E1)
 
 all_sprites = pygame.sprite.Group()
 all_sprites.add(P1, E1, coin)
-#New User event
+
 inc_speed = pygame.USEREVENT + 1
 pygame.time.set_timer(inc_speed, 1000)
 
@@ -136,11 +126,11 @@ while loop:
 
     
 
-    #blits and moves all sprites
+
     for entity in car_sprites:
         screen.blit(entity.image, entity.rect)
         entity.move()
-    #moving the coin for every frame
+
     screen.blit(coin.image, coin.rect)
     coin.move(E1)
 
@@ -148,7 +138,6 @@ while loop:
         speed+=1
         coin_limit+=10
     
-    #game over screen
     if pygame.sprite.spritecollideany(P1, enemies):
         pygame.mixer.Sound("lab9/images/crash.wav").play()
         time.sleep(5)

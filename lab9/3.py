@@ -1,13 +1,3 @@
-'''
-Paint.
-Extend example project from Lab 8 and add following tasks:
-
-Draw square
-Draw right triangle
-Draw equilateral triangle
-Draw rhombus
-Comment your code
-'''
 import pygame
 from math import *
 pygame.init()
